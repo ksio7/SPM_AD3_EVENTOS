@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Eventos activos</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/Index.css}">
+</head>
+<body>
+	<header>
+		<nav id="nav">
+			<div id="cont_logo">
+				<img id="logo" src="/img/Logo.png" />
+			</div>
+			<div id="botones">
+				<button id="volver">
+					<a th:href="@{/}">Volver a inicio</a>
+				</button>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<h2>Listado de Eventos Activos</h2>
+		<table border="1">
+			<tr>
+				<th>Nombre</th>
+				<th>Aforo</th>
+				<th>Fecha inicio</th>
+				<th>Opciones</th>
+			</tr>
+			<tr th:each="activo : ${activos}">
+				<td th:text="${activo.descripcion}"></td>
+				<td th:text="${activo.aforoMaximo}"></td>
+				<td th:text="${activo.fechaInicio}"></td>
+				<td><a
+					th:href="@{eventosActivos/verDetalles/{id}(id=${activo.idEvento})}">Detalles</a></td>
+			</tr>
+		</table>
+	</main>
+</body>
+</html>

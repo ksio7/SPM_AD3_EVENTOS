@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/Index.css}">
+</head>
+<body>
+<header>
+		<nav id="nav">
+			<div id="cont_logo">
+				<img id="logo" src="/img/Logo.png" />
+			</div>
+			<div id="botones">
+				<button id="volver">
+					<a th:href="@{/}">Volver a inicio</a>
+				</button>
+			</div>
+		</nav>
+	</header>
+<main>
+	<h1>Formulario de registro</h1>
+	<h2 th:text="${mensaje}"></h2>
+	<form th:action="@{/signup}" th:object="${usuario}" th:method="post">
+	<label>Username : </label>
+		<input type="text" th:field="*{username}"/>
+		<br><br>
+		<label>Password : </label>
+		<input type="text" th:field="*{password}"/>
+		<br><br>
+		<label>Nombre : </label>
+		<input type="text" th:field="*{nombre}"/>
+		<br><br>
+		<label>Apellidos : </label>
+		<input type="text" th:field="*{apellidos}"/>
+		<br><br>
+		<label>Dirección : </label>
+		<input type="text" th:field="*{direccion}"/>
+		<br><br>
+		<button type="submit">Registrar</button>
+	</form>
+	</main>
+</body>
+</html>

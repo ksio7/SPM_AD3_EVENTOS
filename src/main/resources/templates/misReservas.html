@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Mis reservas</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/Index.css}">
+</head>
+<body>
+	<header>
+		<nav id="nav">
+			<div id="cont_logo">
+				<img id="logo" src="/img/Logo.png" />
+			</div>
+			<div id="botones">
+				<button id="volver">
+					<a sec:authorize="isAuthenticated()" th:href="@{/}">Volver a inicio</a>
+				</button>
+			</div>
+		</nav>
+	</header>
+<main>
+	<h2>Mis reservas</h2>
+	<table border="1">
+		<tr>
+			<th>Evento</th>
+			<th>Fecha de inicio</th>
+			<th>Cantidad</th>
+			<th>Precio de venta unitario</th>
+			<th>Observaciones</th>
+			<th>Cancelar reserva</th>
+		</tr>
+		<tr th:each="reserva : ${reservas}">
+			<td th:text="${reserva.evento.descripcion}"></td>
+			<td th:text="${reserva.evento.fechaInicio}"></td>
+			<td th:text="${reserva.cantidad}"></td>
+			<td th:text="${reserva.precioVenta}"></td>
+			<td th:text="${reserva.observaciones}"></td>
+			<td><a sec:authorize="isAuthenticated()" th:href="@{/misReservas/eliminar/{id}(id=${reserva.idReserva})}">Cancelar</a></td>
+		</tr>
+	</table>
+	<br><br>
+		<h2 th:text="${mensaje}"></h2>
+</main>
+</body>
+</html>

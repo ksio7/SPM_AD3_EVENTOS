@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Eventos destacados</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/Index.css}">
+</head>
+<body>
+	<header>
+		<nav id="nav">
+			<div id="cont_logo">
+				<img id="logo" src="/img/Logo.png" />
+			</div>
+			<div id="botones">
+				<button id="volver">
+					<a th:href="@{/}">Volver a inicio</a>
+				</button>
+			</div>
+		</nav>
+	</header>
+<main>
+<h2>Listado de Eventos Destacados</h2>
+		<table border="1">
+			<tr>
+				<th>Nombre</th>
+				<th>Aforo</th>
+				<th>Fecha inicio</th>
+				<th>Opciones</th>
+			</tr>
+			<tr th:each="destacado : ${destacados}">
+				<td th:text="${destacado.descripcion}"></td>
+				<td th:text="${destacado.aforoMaximo}"></td>
+				<td th:text="${destacado.fechaInicio}"></td>
+				<td><a th:href="@{eventosDestacados/verDetalles/{id}(id=${destacado.idEvento})}">Detalles</a></td>
+			</tr>
+		</table>
+</main>
+</body>
+</html>

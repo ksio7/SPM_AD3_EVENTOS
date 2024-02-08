@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="/css/Index.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<nav id="nav">
+			<div id="cont_logo">
+				<img id="logo" src="/img/Logo.png" />
+			</div>
+			<h1 id="tittle">PSYCHO EVENTOS</h1>
+			<div id="botones">
+				<button>
+					<a th:href="@{/eventosDestacados}">Eventos Destacados</a>
+				</button>
+				<button>
+					<a th:href="@{/eventosActivos}">Eventos Activos</a>
+				</button>
+				<button sec:authorize="isAuthenticated()">
+					<a th:href="@{/misReservas}">Mis reservas</a>
+				</button>
+				<button sec:authorize="isAuthenticated()">
+					<a th:href="@{/logout}">Cerrar sesión</a>
+				</button>
+				<button sec:authorize="!isAuthenticated()">
+					<a th:href="@{/login}">Login</a>
+				</button>
+				<button sec:authorize="!isAuthenticated()">
+					<a th:href="@{/signup}">Registro</a>
+				</button>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<section id="seccion">
+			<div id="tipo">
+				<h1 class="bienvenido" th:if="${#authentication.isAuthenticated()}">
+					<span
+						th:utext="${#authentication.name != 'anonymousUser' ? 'Bienvenido, ' + #authentication.name : 'Bienvenido, Invitado'}"></span>
+				</h1>
+				<h3 th:text="${mensaje}"></h3>
+				<form th:action="@{/home}" method="get">
+				<h3>Seleccionar tipo de evento : </h3>
+					<select name="idTipo">
+						<option th:value="null">Tipos de eventos</option>
+						<option th:each="tipo : ${TiposEvento}" th:value="${tipo.idTipo}"
+							th:text="${tipo.nombre}" type="submit"></option>
+					</select> <br> <br>
+					<button class="filtro" type="submit">Filtrar por tipo</button>
+				</form>
+			</div>
+
+		</section>
+		<section id="seccion">
+			<div class="listado">
+				<h2>Listado de Eventos Destacados</h2>
+				<table border="1">
+					<tr>
+						<th>Nombre</th>
+						<th>Aforo</th>
+						<th>Fecha inicio</th>
+						<th>Opciones</th>
+					</tr>
+					<tr th:each="destacado : ${destacados}">
+						<td th:text="${destacado.descripcion}"></td>
+						<td th:text="${destacado.aforoMaximo}"></td>
+						<td th:text="${destacado.fechaInicio}"></td>
+						<td><a th:href="@{/detalles/{id}(id=${destacado.idEvento})}">Detalles</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="listado">
+				<h2>Listado de Eventos Activos<span></span></h2>
+				<table border="1">
+					<tr>
+						<th>Nombre</th>
+						<th>Aforo</th>
+						<th>Fecha inicio</th>
+						<th>Opciones</th>
+					</tr>
+					<tr th:each="activo : ${activos}">
+						<td th:text="${activo.descripcion}"></td>
+						<td th:text="${activo.aforoMaximo}"></td>
+						<td th:text="${activo.fechaInicio}"></td>
+						<td><a th:href="@{/detalles/{id}(id=${activo.idEvento})}">Detalles</a></td>
+					</tr>
+				</table>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

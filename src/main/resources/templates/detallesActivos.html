@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Detalle evento activo</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/Index.css}">
+</head>
+<body>
+	<header>
+		<nav id="nav">
+			<div id="cont_logo">
+				<img id="logo" src="/img/Logo.png" />
+			</div>
+			<div id="botones">
+				<button id="volver">
+					<a th:href="@{/}">Volver a inicio</a>
+				</button>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<h1>Detalle del evento activo seleccionado</h1>
+		<table border="1">
+			<tr>
+				<th>Nombre</th>
+				<th>Descripción</th>
+				<th>Aforo</th>
+				<th>Dirección</th>
+				<th>Duración</th>
+				<th>Fecha de inicio</th>
+				<th>Mínimo asistencia</th>
+				<th>Precio</th>
+			</tr>
+			<tr>
+				<td th:text="${evento.nombre}"></td>
+				<td th:text="${evento.descripcion}"></td>
+				<td th:text="${evento.aforoMaximo}"></td>
+				<td th:text="${evento.direccion}"></td>
+				<td th:text="${evento.duracion}"></td>
+				<td th:text="${evento.fechaInicio}"></td>
+				<td th:text="${evento.minimoAsistencia}"></td>
+				<td th:text="${evento.precio}"></td>
+			</tr>
+		</table>
+		<section>
+			<article>
+				<h3 sec:authorize="isAuthenticated()"> Quedan : <span th:text="${cantidad}"></span></h3>
+			</article>
+			<article>
+				<form method="post" th:if="${evento.estado != 'Cancelado'} AND ${limiteMaximo != 0}">
+					<label sec:authorize="isAuthenticated()">Cantidad a reservar : </label>
+					<select sec:authorize="isAuthenticated()" name="cantidad">
+                     	<option th:each="i : ${#numbers.sequence(1, limiteMaximo)}" th:value="${i}" th:text="${i}"></option>
+                	</select>
+                	<br><br>
+                	<textarea sec:authorize="isAuthenticated()" placeholder="Observaciones" name="observaciones"></textarea>
+                	<br><br>
+               		<button type="submit" sec:authorize="isAuthenticated()">Reservar</button>
+                </form>
+			</article>	
+			<article>
+			<h3 th:if="${limiteMaximo == 0}"> No se pueden hacer mas reservas de este evento, has alcanzado el límite máximo</h3>
+			</article>		
+		</section>
+	</main>
+</body>
+</html>

@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+/* Global Styles */
+body {
+    background: #1a1a1a;
+}
+
+main {
+    margin-left: 4%;
+}
+
+/* Typography */
+h1, h2, h3, label, input, button, a, select, option, th, td {
+    font-family: 'Cinzel', serif; /* change the font to Cinzel */
+    color: red; /* change the color to red */
+}
+
+h1 {
+    font-size: 34px;
+    text-align: center;
+}
+
+h3 {
+    margin-bottom: 16px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 19px;
+}
+
+input {
+    font-size: 14px;
+    background: #333;
+}
+
+/* Navigation */
+nav {
+    background: #333;
+}
+
+#nav {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+/* Buttons */
+button {
+    background: #333;
+    border: 1px solid #6c9df9;
+    padding: 8px;
+    box-shadow: 1px 1px 1px 1px #6c9df9;
+    border-radius: 10%;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+button a {
+    text-decoration: none;
+}
+
+button:hover {
+    color: red; /* change the color to red */
+    background: #000000; /* change the background to light black */
+}
+
+/* Links */
+a {
+    text-decoration: none;
+}
+a:hover {
+    color: red; /* change the color to red */
+    background: #000000; /* change the background to light black */
+}
+/* Select & Options */
+select, option {
+    background: #333;
+    border: 1px solid #6c9df9;
+    padding: 8px;
+    box-shadow: 1px 1px 1px 1px #6c9df9;
+    border-radius: 10%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Tables */
+th, td {
+    background: #333;
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #6c9df9;
+}
+
+/* Specific IDs */
+#botones {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+}
+
+#cant {
+    font-size: 14px;
+    width: 60px;
+}
+
+#tipo {
+    margin-top: 1%;
+    margin-bottom: 2%;
+    width: 100%;
+}
+
+#volver {
+    margin-left: 60%;
+}
+
+#logo {
+    width: 25%;
+    margin-left: 7%;
+}
+
+#cont_logo, #botones {
+    width: 100%;
+}
+
+#seccion {
+    display: flex;
+    align-content: center;
+}
+
+/* Specific Classes */
+.filtro, .bienvenido {
+    color: red; /* change the color to red */
+}
+
+.listado {
+    width: 50%;
+}
